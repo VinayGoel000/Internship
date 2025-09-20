@@ -1,0 +1,24 @@
+/* -------- Hero Section -------- */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 80px 10%;
+    color: white;
+    background: url("../images/career.png") no-repeat center right; /* background image */
+    background-size: contain;  /* image fit karegi */
+    background-color: #007bff; /* fallback gradient color */
+    min-height: 400px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 20px rgba(0,0,0,0.2);
+}
+
+.hero-text {
+    max-width: 50%;
+    background: rgba(0,0,0,0.4); /* halka dark bg for readability */
+    padding: 20px;
+    border-radius: 8px;
+}
+.hero-text h1 span {
+    color: #ffd700;
+}

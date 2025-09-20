@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Company Dashboard</h2>
+<a href="{{ url_for('new_post') }}">Create New Internship Post</a>
+<h3>Your Posts</h3>
+<ul>
+  {% for p in posts %}
+    <li>
+      <strong>{{ p.title }}</strong> — {{ p.description or '' }} |
+      Cutoff: {{ p.cutoff_percent }}% |
+      <a href="{{ url_for('view_resumes', post_id=p.id) }}">View Qualified Resumes</a>
+    </li>
+  {% else %}
+    <li>No posts yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

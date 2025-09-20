@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Create Internship Post</h2>
+<form method="post">
+  <label>Title</label><br><input name="title" required><br>
+  <label>Description</label><br><textarea name="description"></textarea><br>
+  <label>Cutoff Percent (e.g., 50)</label><br><input name="cutoff_percent" type="number" value="50"><br>
+  <label>Test JSON (see example)</label><br>
+  <textarea name="test_json" rows="10" style="width:100%">{{ example }}</textarea><br>
+  <small>Test JSON must be a list: [{"q":"...","options":["a","b"],"ans":0}, ...]</small><br><br>
+  <button type="submit">Post Internship</button>
+</form>
+{% endblock %}

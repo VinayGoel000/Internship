@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Test for: {{ post.title }}</h2>
+<p>Cutoff: {{ post.cutoff_percent }}%</p>
+<form method="post">
+  {% for q in questions %}
+    <div class="question">
+      <p><strong>Q{{ loop.index }}: {{ q.q }}</strong></p>
+      {% for opt in q.options %}
+        <label>
+          <input type="radio" name="q_{{ loop.index0 }}" value="{{ loop.index0 }}" required>
+          {{ opt }}
+        </label><br>
+      {% endfor %}
+    </div>
+    <hr>
+  {% endfor %}
+  <button type="submit">Submit Test</button>
+</form>
+{% endblock %}

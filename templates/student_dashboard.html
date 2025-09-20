@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Student Dashboard</h2>
+<h3>Available Internships</h3>
+<ul>
+  {% for p in internships %}
+    <li>
+      <strong>{{ p.title }}</strong> — {{ p.description or '' }} |
+      <a href="{{ url_for('apply', post_id=p.id) }}">Apply / Take Test</a>
+      {% if p.id in applied_post_ids %} (Applied) {% endif %}
+    </li>
+  {% else %}
+    <li>No internships yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

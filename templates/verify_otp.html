@@ -1,0 +1,25 @@
+@app.route("/verify-otp", methods=["GET", "POST"])
+def verify_otp():
+    temp_user = session.get("temp_user")
+    if not temp_user:
+        flash("Session expired. Register again.", "danger")
+        return redirect(url_for("register"))
+
+    if request.method == "POST":
+        entered_otp = request.form["otp"]
+        if str(temp_user["otp"]) == str(entered_otp):
+            u = User(
+                username=temp_user["username"],
+                password=temp_user["password"],
+                role=temp_user["role"],
+                mobile=temp_user["mobile"],
+                is_verified=True
+            )
+            db.session.add(u)
+            db.session.commit()
+            session.pop("temp_user")
+            flash("OTP verified! Now you can login.", "success")
+            return redirect(url_for("login"))
+        else:
+            flash("Invalid OTP. Try again.", "danger")
+    return render_template("verify_otp.html")

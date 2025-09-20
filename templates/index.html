@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="hero">
+    <div class="hero-text">
+        <h1>Internships that <span>Value Skills</span></h1>
+        <p>Students prove their skills through tests. Companies get only qualified resumes.</p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('register') }}" class="btn student-btn">I am a Student</a>
+            <a href="{{ url_for('register') }}" class="btn company-btn">I am a Company</a>
+        </div>
+    </div>
+</div>
+
+<div class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+        <div class="step">
+            <h3>👩‍💻 For Students</h3>
+            <p>1. Choose Internship<br>2. Clear Skill Test<br>3. Upload Resume</p>
+        </div>
+        <div class="step">
+            <h3>🏢 For Companies</h3>
+            <p>1. Post Internship<br>2. Add Skill Test<br>3. Get Filtered Resumes</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

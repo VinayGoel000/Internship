@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Qualified Resumes for: {{ post.title }}</h2>
+{% if apps %}
+  <ul>
+  {% for a in apps %}
+    <li>
+      Student ID: {{ a.student_id }} | Score: {{ a.score_percent }}% |
+      {% if a.resume_filename %}
+        <a href="{{ url_for('uploaded_file', filename=a.resume_filename) }}" target="_blank">Download Resume</a>
+      {% else %}
+        Resume not uploaded yet
+      {% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>No qualified applicants yet.</p>
+{% endif %}
+{% endblock %}

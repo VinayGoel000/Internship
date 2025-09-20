@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Upload Resume</h2>
+<p>Upload resume for application (ID: {{ app_entry.id }})</p>
+<form method="post" enctype="multipart/form-data">
+  <input type="file" name="resume" accept=".pdf,.doc,.docx" required><br><br>
+  <button type="submit">Upload</button>
+</form>
+{% endblock %}
