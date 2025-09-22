@@ -1,0 +1,504 @@
+{
+  "questions": [
+    {
+      "question": "What is the output of `print(2 ** 3)`?",
+      "options": [
+        "6",
+        "8",
+        "9",
+        "12"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "Which of the following is a mutable data type in Python?",
+      "options": [
+        "int",
+        "str",
+        "tuple",
+        "list"
+      ],
+      "answer_index": 3
+    },
+    {
+      "question": "What is the correct way to open a file named `data.txt` in write mode in Python?",
+      "options": [
+        "file = open('data.txt', 'r')",
+        "file = open('data.txt', 'w')",
+        "file = open('data.txt', 'a')",
+        "file = open('data.txt')"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "What does the `len()` function do in Python?",
+      "options": [
+        "Returns the number of items in an object",
+        "Returns the length of a file",
+        "Returns the largest item in an iterable",
+        "Returns the smallest item in an iterable"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "Which keyword is used to define a function in Python?",
+      "options": [
+        "function",
+        "def",
+        "fun",
+        "define"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "What is the output of `print('Hello'[-1])`?",
+      "options": [
+        "H",
+        "o",
+        "l",
+        "e"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "Which of the following is the correct syntax for a `for` loop in Python?",
+      "options": [
+        "for i in range(5):",
+        "for (i = 0; i < 5; i++)",
+        "foreach i in 5:",
+        "for i <= 5:"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "How do you create a dictionary in Python?",
+      "options": [
+        "`my_dict = []`",
+        "`my_dict = ()`",
+        "`my_dict = {}`",
+        "`my_dict = <>`"
+      ],
+      "answer_index": 2
+    },
+    {
+      "question": "What is the purpose of the `pass` statement in Python?",
+      "options": [
+        "To exit a loop",
+        "To skip the current iteration of a loop",
+        "To do nothing, it's a null operation",
+        "To raise an exception"
+      ],
+      "answer_index": 2
+    },
+    {
+      "question": "How do you add a comment in a Python script?",
+      "options": [
+        "// This is a comment",
+        "# This is a comment",
+        "/* This is a comment */",
+        "<!-- This is a comment -->"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "What is the result of `True and False`?",
+      "options": [
+        "True",
+        "False",
+        "Error",
+        "None"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "Which method is used to remove an item from a list by its value?",
+      "options": [
+        "pop()",
+        "remove()",
+        "del()",
+        "discard()"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "What is the correct syntax to create a class named `MyClass` in Python?",
+      "options": [
+        "class MyClass:",
+        "MyClass class:",
+        "create class MyClass:",
+        "def class MyClass:"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What does the `__init__` method do in a Python class?",
+      "options": [
+        "It initializes the class variables",
+        "It is the constructor of the class",
+        "It is a destructor of the class",
+        "It is a private method"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "How can you get the number of elements in a list `my_list`?",
+      "options": [
+        "my_list.size()",
+        "size(my_list)",
+        "len(my_list)",
+        "my_list.len()"
+      ],
+      "answer_index": 2
+    },
+    {
+      "question": "What will be the output of `print(list(range(5)))`?",
+      "options": [
+        "[0, 1, 2, 3, 4, 5]",
+        "[1, 2, 3, 4, 5]",
+        "[0, 1, 2, 3, 4]",
+        "[1, 2, 3, 4]"
+      ],
+      "answer_index": 2
+    },
+    {
+      "question": "Which of the following is used to handle exceptions in Python?",
+      "options": [
+        "try...except",
+        "catch...finally",
+        "if...else",
+        "do...while"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What is the output of `'python'.upper()`?",
+      "options": [
+        "'PYTHON'",
+        "'Python'",
+        "'pythoN'",
+        "Error"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What is the purpose of the `self` keyword in a class method?",
+      "options": [
+        "It refers to the current instance of the class",
+        "It is a global variable",
+        "It refers to the parent class",
+        "It is used to create a new object"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "How do you import a module named `math` in Python?",
+      "options": [
+        "include math",
+        "import math",
+        "use math",
+        "load math"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "What is a lambda function in Python?",
+      "options": [
+        "A function with a name",
+        "A small anonymous function",
+        "A function that can have multiple return statements",
+        "A recursive function"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "What is the output of `3 * 'a'`?",
+      "options": [
+        "'3a'",
+        "'aaa'",
+        "Error",
+        "9"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "Which data structure uses a key-value pair?",
+      "options": [
+        "List",
+        "Tuple",
+        "Set",
+        "Dictionary"
+      ],
+      "answer_index": 3
+    },
+    {
+      "question": "What does the `break` statement do?",
+      "options": [
+        "Exits the current loop",
+        "Skips the current iteration of the loop",
+        "Continues to the next iteration of the loop",
+        "Ends the program"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "How do you check if a key exists in a dictionary?",
+      "options": [
+        "`'key' in my_dict`",
+        "`my_dict.has_key('key')`",
+        "`my_dict.contains('key')`",
+        "`exists(my_dict, 'key')`"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What is list comprehension?",
+      "options": [
+        "A way to create lists using a for loop",
+        "A concise way to create lists",
+        "A method to sort a list",
+        "A way to reverse a list"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "What is the correct way to get the current working directory?",
+      "options": [
+        "os.cwd()",
+        "os.getcwd()",
+        "os.currentdir()",
+        "os.path()"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "What is the output of `bool('')`?",
+      "options": [
+        "True",
+        "False",
+        "None",
+        "Error"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "Which of these is not a core data type in Python?",
+      "options": [
+        "List",
+        "Dictionary",
+        "Tuple",
+        "Class"
+      ],
+      "answer_index": 3
+    },
+    {
+      "question": "What is the purpose of the `*args` syntax in a function definition?",
+      "options": [
+        "To pass a variable number of keyword arguments",
+        "To pass a variable number of positional arguments",
+        "To indicate that the function is a generator",
+        "To unpack a list"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "What is the purpose of the `**kwargs` syntax in a function definition?",
+      "options": [
+        "To pass a variable number of keyword arguments",
+        "To pass a variable number of positional arguments",
+        "To indicate that the function is a generator",
+        "To unpack a dictionary"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What is a decorator in Python?",
+      "options": [
+        "A way to add functionality to an existing function without modifying it",
+        "A special type of function that returns a dictionary",
+        "A way to create a class with a single method",
+        "A method to delete an object"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What is a generator in Python?",
+      "options": [
+        "A function that returns a list",
+        "A function that returns an iterator",
+        "A function that can be called only once",
+        "A function that generates random numbers"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "Which statement is used to raise an exception?",
+      "options": [
+        "throw",
+        "raise",
+        "try",
+        "except"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "What is the difference between a tuple and a list?",
+      "options": [
+        "Lists are mutable, tuples are immutable",
+        "Tuples are mutable, lists are immutable",
+        "There is no difference",
+        "Lists are indexed, tuples are not"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What does the `zip()` function do?",
+      "options": [
+        "It combines two or more iterables into a single iterator of tuples",
+        "It compresses a file",
+        "It extracts a file",
+        "It sorts a list"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What is the purpose of the `if __name__ == '__main__'` block?",
+      "options": [
+        "It defines the main function of the script",
+        "It allows the script to be run as a standalone program or imported as a module",
+        "It is a required part of every Python script",
+        "It is used for debugging purposes"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "What is inheritance in Python?",
+      "options": [
+        "A way to create a new class from an existing class",
+        "A way to create a new object from a class",
+        "A way to combine multiple functions into one",
+        "A way to import modules"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What is duck typing?",
+      "options": [
+        "A programming style where the type of an object is determined by its methods and properties, not its class",
+        "A way to check the type of an object",
+        "A way to convert an object from one type to another",
+        "A way to create a new type of object"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What is the Global Interpreter Lock (GIL) in CPython?",
+      "options": [
+        "A mutex that protects access to Python objects, preventing multiple native threads from executing Python bytecodes at once",
+        "A way to lock global variables",
+        "A tool for debugging Python code",
+        "A security feature of Python"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What is a metaclass in Python?",
+      "options": [
+        "A class of a class",
+        "A way to define the behavior of a class",
+        "A special type of class that cannot be instantiated",
+        "A class that inherits from multiple classes"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What is the difference between `==` and `is`?",
+      "options": [
+        "`==` compares the values of two objects, while `is` compares their identities",
+        "`is` compares the values of two objects, while `==` compares their identities",
+        "There is no difference",
+        "`is` is used for comparing strings, while `==` is used for comparing numbers"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What are context managers in Python?",
+      "options": [
+        "Objects that define the methods `__enter__` and `__exit__`",
+        "A way to manage resources such as files and network connections",
+        "A way to create a new context for a function",
+        "A way to manage the scope of variables"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What is pickling and unpickling?",
+      "options": [
+        "The process of serializing and deserializing a Python object structure",
+        "A way to compress and decompress files",
+        "A way to encrypt and decrypt data",
+        "A way to store data in a database"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What is a descriptor in Python?",
+      "options": [
+        "An object attribute with a binding behavior, whose attribute access has been overridden by methods in the descriptor protocol",
+        "A way to describe the properties of a class",
+        "A special type of comment",
+        "A way to create a read-only attribute"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What is monkey patching?",
+      "options": [
+        "Dynamically modifying a class or module at runtime",
+        "A way to fix bugs in a program",
+        "A way to add new features to a program",
+        "A way to test a program"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What is a closure in Python?",
+      "options": [
+        "A function object that remembers values in enclosing scopes even if they are not present in memory",
+        "A way to close a file",
+        "A way to end a program",
+        "A way to create a private variable"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What is the difference between deep copy and shallow copy?",
+      "options": [
+        "A shallow copy creates a new object and inserts references into it to the objects found in the original, while a deep copy creates a new object and recursively copies the objects found in the original",
+        "A deep copy creates a new object and inserts references into it to the objects found in the original, while a shallow copy creates a new object and recursively copies the objects found in the original",
+        "There is no difference",
+        "A shallow copy is faster than a deep copy"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What is the purpose of the `super()` function?",
+      "options": [
+        "To call a method of the parent class",
+        "To create a superclass",
+        "To call a method of the current class",
+        "To create a subclass"
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "What is a static method in Python?",
+      "options": [
+        "A method that is bound to the class and not the object of the class",
+        "A method that can be called without creating an instance of the class",
+        "A method that cannot be modified",
+        "A method that can only be called from within the class"
+      ],
+      "answer_index": 0
+    }
+  ]
+}

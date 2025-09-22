@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #2d4a6b 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .left-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 3rem;
+            z-index: 10;
+        }
+
+        .right-illustration {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #64b5f6 0%, #42a5f5 50%, #2196f3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #b3c5d7;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(33, 150, 243, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #64b5f6;
+            border: 2px solid #64b5f6;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #64b5f6;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .dropdown-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(135deg, #1a2332 0%, #2d4a6b 100%);
+            border-radius: 12px;
+            padding: 0.5rem 0;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(100, 181, 246, 0.3);
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: #b3c5d7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1rem;
+            position: relative;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(100, 181, 246, 0.1);
+            color: #64b5f6;
+            padding-left: 2rem;
+        }
+
+        .dropdown-item::before {
+            content: '→';
+            position: absolute;
+            left: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .dropdown-item:hover::before {
+            opacity: 1;
+        }
+
+        .submenu-container {
+            position: relative;
+        }
+
+        .submenu {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
+            border-radius: 12px;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(66, 165, 245, 0.3);
+            margin-left: 0.5rem;
+            pointer-events: none;
+        }
+
+        .submenu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+            pointer-events: all;
+        }
+
+        .submenu-item {
+            display: block;
+            padding: 0.6rem 1.25rem;
+            color: #a3b8cc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .submenu-item:hover {
+            background: rgba(66, 165, 245, 0.15);
+            color: #42a5f5;
+            transform: translateX(5px);
+        }
+
+        .submenu-item.individual::before {
+            content: '👤';
+            margin-right: 0.5rem;
+        }
+
+        .submenu-item.company::before {
+            content: '🏢';
+            margin-right: 0.5rem;
+        }
+
+        .stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #64b5f6;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #8fa8c4;
+            margin-top: 0.5rem;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: linear-gradient(135deg, #1a2332 0%, #2d4a6b 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(100, 181, 246, 0.3);
+            transform: scale(0.9) translateY(-50px);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.show .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #64b5f6;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #b3c5d7;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #b3c5d7;
+            font-weight: 600;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid rgba(100, 181, 246, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #64b5f6;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
+        }
+
+        .btn-cancel {
+            background: transparent;
+            color: #b3c5d7;
+            border: 2px solid #b3c5d7;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+        }
+
+        .btn-cancel:hover {
+            background: #b3c5d7;
+            color: #1a2332;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .error-message {
+            color: #f44336;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* Illustration Styles */
+        .illustration-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+        }
+
+        .floating-element {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(2n) {
+            animation-delay: -3s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .feature-card {
+            background: rgba(100, 181, 246, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 181, 246, 0.3);
+            text-align: center;
+            width: 140px;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-title {
+            font-size: 0.9rem;
+            color: #64b5f6;
+            font-weight: 600;
+        }
+
+        .card-1 { top: 50px; left: 80px; }
+        .card-2 { top: 200px; right: 50px; }
+        .card-3 { bottom: 80px; left: 50px; }
+        .card-4 { bottom: 200px; right: 80px; }
+
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .left-content {
+                padding-right: 0;
+                padding-bottom: 2rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .illustration-container {
+                width: 400px;
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-content">
+            <h1>AI-Powered Career Growth</h1>
+            <p class="subtitle">
+                Transform your career journey with intelligent skill assessments, 
+                personalized internship matching, and AI-driven career guidance. 
+                Connect students with opportunities and help companies find the perfect talent.
+            </p>
+            
+            <div class="cta-buttons">
+                <div class="dropdown-container">
+                    <button class="btn-primary" id="getStartedBtn">Get Started</button>
+                    <div class="dropdown-menu" id="mainDropdown">
+                        <div class="submenu-container" id="registerContainer">
+                            <button class="dropdown-item" id="registerBtn">Register</button>
+                            <div class="submenu" id="registerSubmenu">
+                                <button class="submenu-item individual" data-action="register" data-type="individual">As Individual</button>
+                                <button class="submenu-item company" data-action="register" data-type="company">As Company</button>
+                            </div>
+                        </div>
+                        <div class="submenu-container" id="loginContainer">
+                            <button class="dropdown-item" id="loginBtn">Login</button>
+                            <div class="submenu" id="loginSubmenu">
+                                <button class="submenu-item individual" data-action="login" data-type="individual">As Individual</button>
+                                <button class="submenu-item company" data-action="login" data-type="company">As Company</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-secondary" id="demoBtn">Watch Demo</button>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Students Placed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Partner Companies</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right-illustration">
+            <div class="illustration-container">
+                <div class="floating-element feature-card card-1">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-title">Smart Matching</div>
+                </div>
+                
+                <div class="floating-element feature-card card-2">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">Skill Assessment</div>
+                </div>
+                
+                <div class="floating-element feature-card card-3">
+                    <div class="feature-icon">🚀</div>
+                    <div class="feature-title">Career Growth</div>
+                </div>
+                
+                <div class="floating-element feature-card card-4">
+                    <div class="feature-icon">💼</div>
+                    <div class="feature-title">Job Placement</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="individualRegisterModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Register as Individual</h2>
+                <button class="close-btn" onclick="closeModal('individualRegisterModal')">&times;</button>
+            </div>
+            <form id="individualRegisterForm">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" id="individualName" required>
+                    <div class="error-message" id="individualNameError"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" id="individualEmail" required>
+                    <div class="error-message" id="individualEmailError"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="individualPassword" required>
+                    <div class="error-message" id="individualPasswordError"></div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" onclick="closeModal('individualRegisterModal')">Cancel</button>
+                    <button type="submit" class="btn-submit">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="companyRegisterModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Register as Company</h2>
+                <button class="close-btn" onclick="closeModal('companyRegisterModal')">&times;</button>
+            </div>
+            <form id="companyRegisterForm">
+                <div class="form-group">
+                    <label class="form-label">Company Name</label>
+                    <input type="text" class="form-input" id="companyName" required>
+                    <div class="error-message" id="companyNameError"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">GST Number</label>
+                    <input type="text" class="form-input" id="gstNumber" required>
+                    <div class="error-message" id="gstNumberError"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Contact Details (Phone)</label>
+                    <input type="tel" class="form-input" id="contactPhone" required>
+                    <div class="error-message" id="contactPhoneError"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Company Email</label>
+                    <input type="email" class="form-input" id="companyEmail" required>
+                    <div class="error-message" id="companyEmailError"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="companyPassword" required>
+                    <div class="error-message" id="companyPasswordError"></div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" onclick="closeModal('companyRegisterModal')">Cancel</button>
+                    <button type="submit" class="btn-submit">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="individualLoginModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Login as Individual</h2>
+                <button class="close-btn" onclick="closeModal('individualLoginModal')">&times;</button>
+            </div>
+            <form id="individualLoginForm">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" id="individualLoginEmail" required>
+                    <div class="error-message" id="individualLoginEmailError"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="individualLoginPassword" required>
+                    <div class="error-message" id="individualLoginPasswordError"></div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" onclick="closeModal('individualLoginModal')">Cancel</button>
+                    <button type="submit" class="btn-submit">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="companyLoginModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Login as Company</h2>
+                <button class="close-btn" onclick="closeModal('companyLoginModal')">&times;</button>
+            </div>
+            <form id="companyLoginForm">
+                <div class="form-group">
+                    <label class="form-label">Company Email</label>
+                    <input type="email" class="form-input" id="companyLoginEmail" required>
+                    <div class="error-message" id="companyLoginEmailError"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="companyLoginPassword" required>
+                    <div class="error-message" id="companyLoginPasswordError"></div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" onclick="closeModal('companyLoginModal')">Cancel</button>
+                    <button type="submit" class="btn-submit">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is already logged in and redirect
+            const loggedInUserType = localStorage.getItem('loggedInUserType');
+            if (loggedInUserType) {
+                if (loggedInUserType === 'individual') {
+                    window.location.href = 'individual_dashboard.html';
+                } else if (loggedInUserType === 'company') {
+                    window.location.href = 'company_dashboard.html';
+                }
+                return;
+            }
+
+            const getStartedBtn = document.getElementById('getStartedBtn');
+            const mainDropdown = document.getElementById('mainDropdown');
+            const registerBtn = document.getElementById('registerBtn');
+            const loginBtn = document.getElementById('loginBtn');
+            const registerSubmenu = document.getElementById('registerSubmenu');
+            const loginSubmenu = document.getElementById('loginSubmenu');
+            const demoBtn = document.getElementById('demoBtn');
+            
+            let isDropdownOpen = false;
+
+            // Toggle main dropdown
+            getStartedBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                isDropdownOpen = !isDropdownOpen;
+                
+                if (isDropdownOpen) {
+                    mainDropdown.classList.add('show');
+                } else {
+                    mainDropdown.classList.remove('show');
+                    registerSubmenu.classList.remove('show');
+                    loginSubmenu.classList.remove('show');
+                }
+            });
+
+            // Show register submenu
+            registerBtn.addEventListener('mouseenter', function() {
+                registerSubmenu.classList.add('show');
+                loginSubmenu.classList.remove('show');
+            });
+
+            // Show login submenu
+            loginBtn.addEventListener('mouseenter', function() {
+                loginSubmenu.classList.add('show');
+                registerSubmenu.classList.remove('show');
+            });
+
+            // Hide submenus when leaving the container
+            document.getElementById('registerContainer').addEventListener('mouseleave', function() {
+                setTimeout(() => {
+                    if (!registerSubmenu.matches(':hover')) {
+                        registerSubmenu.classList.remove('show');
+                    }
+                }, 100);
+            });
+
+            document.getElementById('loginContainer').addEventListener('mouseleave', function() {
+                setTimeout(() => {
+                    if (!loginSubmenu.matches(':hover')) {
+                        loginSubmenu.classList.remove('show');
+                    }
+                }, 100);
+            });
+
+            // Handle submenu item clicks
+            document.querySelectorAll('.submenu-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const action = this.getAttribute('data-action');
+                    const type = this.getAttribute('data-type');
+                    
+                    // Close all menus
+                    mainDropdown.classList.remove('show');
+                    registerSubmenu.classList.remove('show');
+                    loginSubmenu.classList.remove('show');
+                    isDropdownOpen = false;
+                    
+                    // Open appropriate modal
+                    if (action === 'register' && type === 'individual') {
+                        openModal('individualRegisterModal');
+                    } else if (action === 'register' && type === 'company') {
+                        openModal('companyRegisterModal');
+                    } else if (action === 'login' && type === 'individual') {
+                        openModal('individualLoginModal');
+                    } else if (action === 'login' && type === 'company') {
+                        openModal('companyLoginModal');
+                    }
+                });
+            });
+
+            // Demo button
+            demoBtn.addEventListener('click', function() {
+                showNotification('Opening Demo Video...');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown-container')) {
+                    mainDropdown.classList.remove('show');
+                    registerSubmenu.classList.remove('show');
+                    loginSubmenu.classList.remove('show');
+                    isDropdownOpen = false;
+                }
+            });
+
+            // Form submissions
+            setupFormHandlers();
+        });
+
+        function setupFormHandlers() {
+            // Individual registration form
+            document.getElementById('individualRegisterForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                registerIndividual();
+            });
+
+            // Company registration form
+            document.getElementById('companyRegisterForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                registerCompany();
+            });
+
+            // Individual login form
+            document.getElementById('individualLoginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                loginIndividual();
+            });
+
+            // Company login form
+            document.getElementById('companyLoginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                loginCompany();
+            });
+        }
+
+        function registerIndividual() {
+            const name = document.getElementById('individualName').value.trim();
+            const email = document.getElementById('individualEmail').value.trim().toLowerCase();
+            const password = document.getElementById('individualPassword').value;
+
+            // Validation
+            clearErrors('individual');
+            let hasError = false;
+
+            if (!name) {
+                showError('individualNameError', 'Full name is required');
+                hasError = true;
+            }
+
+            if (!email) {
+                showError('individualEmailError', 'Email is required');
+                hasError = true;
+            } else {
+                const existingUsers = JSON.parse(localStorage.getItem('users') || '{}');
+                if (existingUsers[email]) {
+                    showError('individualEmailError', 'Email already registered');
+                    hasError = true;
+                }
+            }
+
+            if (!password || password.length < 6) {
+                showError('individualPasswordError', 'Password must be at least 6 characters');
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            // Save user to localStorage
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            users[email] = {
+                name: name,
+                email: email,
+                password: password,
+                type: 'individual'
+            };
+            localStorage.setItem('users', JSON.stringify(users));
+
+            showNotification('Registration successful! You can now log in.');
+            closeModal('individualRegisterModal');
+            clearForm('individualRegisterForm');
+        }
+
+        function registerCompany() {
+            const companyName = document.getElementById('companyName').value.trim();
+            const gstNumber = document.getElementById('gstNumber').value.trim();
+            const contactPhone = document.getElementById('contactPhone').value.trim();
+            const email = document.getElementById('companyEmail').value.trim().toLowerCase();
+            const password = document.getElementById('companyPassword').value;
+
+            // Validation
+            clearErrors('company');
+            let hasError = false;
+
+            if (!companyName) {
+                showError('companyNameError', 'Company name is required');
+                hasError = true;
+            }
+
+            if (!gstNumber) {
+                showError('gstNumberError', 'GST number is required');
+                hasError = true;
+            }
+
+            if (!contactPhone) {
+                showError('contactPhoneError', 'Contact phone is required');
+                hasError = true;
+            }
+
+            if (!email) {
+                showError('companyEmailError', 'Company email is required');
+                hasError = true;
+            } else {
+                const existingUsers = JSON.parse(localStorage.getItem('users') || '{}');
+                if (existingUsers[email]) {
+                    showError('companyEmailError', 'Email already registered');
+                    hasError = true;
+                }
+            }
+
+            if (!password || password.length < 6) {
+                showError('companyPasswordError', 'Password must be at least 6 characters');
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            // Save company to localStorage
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            users[email] = {
+                companyName: companyName,
+                gstNumber: gstNumber,
+                contactPhone: contactPhone,
+                email: email,
+                password: password,
+                type: 'company'
+            };
+            localStorage.setItem('users', JSON.stringify(users));
+
+            // Set login status and redirect
+            localStorage.setItem('loggedInUserType', 'company');
+            localStorage.setItem('currentUser', JSON.stringify(users[email]));
+
+            showNotification('Company registered successfully! Redirecting to dashboard...');
+            closeModal('companyRegisterModal');
+            clearForm('companyRegisterForm');
+            
+            setTimeout(() => {
+                window.location.href = 'company_dashboard.html';
+            }, 1500);
+        }
+
+        function loginIndividual() {
+            const email = document.getElementById('individualLoginEmail').value.trim().toLowerCase();
+            const password = document.getElementById('individualLoginPassword').value;
+
+            clearErrors('individualLogin');
+            
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            const user = users[email];
+            
+            if (!user) {
+                showError('individualLoginEmailError', 'Email not registered. Please register first.');
+                return;
+            }
+            
+            if (user.type !== 'individual') {
+                showError('individualLoginEmailError', 'This email is registered as a company. Please use company login.');
+                return;
+            }
+            
+            if (user.password !== password) {
+                showError('individualLoginPasswordError', 'Incorrect password');
+                return;
+            }
+
+            // Login successful
+            localStorage.setItem('loggedInUserType', 'individual');
+            localStorage.setItem('currentUser', JSON.stringify(user));
+
+            showNotification(`Welcome back, ${user.name}! Redirecting to dashboard...`);
+            closeModal('individualLoginModal');
+            
+            setTimeout(() => {
+                window.location.href = 'individual_dashboard.html';
+            }, 1500);
+        }
+
+        function loginCompany() {
+            const email = document.getElementById('companyLoginEmail').value.trim().toLowerCase();
+            const password = document.getElementById('companyLoginPassword').value;
+
+            clearErrors('companyLogin');
+            
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            const user = users[email];
+            
+            if (!user) {
+                showError('companyLoginEmailError', 'Email not registered. Please register first.');
+                return;
+            }
+            
+            if (user.type !== 'company') {
+                showError('companyLoginEmailError', 'This email is registered as an individual. Please use individual login.');
+                return;
+            }
+            
+            if (user.password !== password) {
+                showError('companyLoginPasswordError', 'Incorrect password');
+                return;
+            }
+
+            // Login successful
+            localStorage.setItem('loggedInUserType', 'company');
+            localStorage.setItem('currentUser', JSON.stringify(user));
+
+            showNotification(`Welcome back, ${user.companyName}! Redirecting to dashboard...`);
+            closeModal('companyLoginModal');
+            
+            setTimeout(() => {
+                window.location.href = 'company_dashboard.html';
+            }, 1500);
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+
+        function clearErrors(prefix) {
+            const errorElements = document.querySelectorAll(`[id*="${prefix}"][id*="Error"]`);
+            errorElements.forEach(element => {
+                element.style.display = 'none';
+                element.textContent = '';
+            });
+        }
+
+        function clearForm(formId) {
+            document.getElementById(formId).reset();
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 12px;
+                box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+                z-index: 10000;
+                font-weight: 500;
+                transform: translateX(400px);
+                transition: transform 0.3s ease;
+                font-size: 1rem;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(400px)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal-overlay')) {
+                const modalId = e.target.id;
+                closeModal(modalId);
+            }
+        });
+
+        // Escape key to close modals
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const openModal = document.querySelector('.modal-overlay.show');
+                if (openModal) {
+                    closeModal(openModal.id);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Skill Test - AI Career Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #2d4a6b 100%);
+            min-height: 100vh;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: rgba(26, 35, 50, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(100, 181, 246, 0.2);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #64b5f6 0%, #42a5f5 50%, #2196f3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .test-info {
+            color: #b3c5d7;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .test-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .test-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #64b5f6;
+            margin-bottom: 1rem;
+        }
+
+        .test-description {
+            font-size: 1.2rem;
+            color: #b3c5d7;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .test-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1rem 1.5rem;
+            background: rgba(100, 181, 246, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #64b5f6;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #a3b8cc;
+        }
+
+        .loading-section {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .loading-spinner {
+            border: 4px solid rgba(100, 181, 246, 0.3);
+            border-top: 4px solid #64b5f6;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #64b5f6;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .questions-container {
+            display: none;
+        }
+
+        .question-card {
+            background: rgba(26, 35, 50, 0.6);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(100, 181, 246, 0.2);
+        }
+
+        .question-number {
+            color: #64b5f6;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: rgba(100, 181, 246, 0.05);
+            border: 2px solid rgba(100, 181, 246, 0.2);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #b3c5d7;
+            font-size: 1rem;
+        }
+
+        .option-label:hover {
+            background: rgba(100, 181, 246, 0.1);
+            border-color: rgba(100, 181, 246, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .option-label.selected {
+            background: rgba(100, 181, 246, 0.2);
+            border-color: #64b5f6;
+            color: white;
+        }
+
+        .option-radio {
+            margin-right: 1rem;
+            transform: scale(1.2);
+            accent-color: #64b5f6;
+        }
+
+        .submit-section {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(26, 35, 50, 0.6);
+            border-radius: 16px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(100, 181, 246, 0.2);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(33, 150, 243, 0.4);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results-section {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+            background: rgba(26, 35, 50, 0.6);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(100, 181, 246, 0.2);
+        }
+
+        .results-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .results-title.passed {
+            color: #4caf50;
+        }
+
+        .results-title.failed {
+            color: #f44336;
+        }
+
+        .score-display {
+            font-size: 3rem;
+            font-weight: 900;
+            margin: 1rem 0;
+        }
+
+        .score-display.passed {
+            color: #4caf50;
+        }
+
+        .score-display.failed {
+            color: #f44336;
+        }
+
+        .results-message {
+            font-size: 1.3rem;
+            color: #b3c5d7;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .redirect-info {
+            font-size: 1rem;
+            color: #a3b8cc;
+            margin-top: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(100, 181, 246, 0.2);
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #64b5f6, #2196f3);
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .test-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .question-card {
+                padding: 1.5rem;
+            }
+            
+            .test-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">AI Career Platform</div>
+        <div class="test-info">
+            <span id="skillName">Python</span> Skill Assessment
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="loading-section" id="loadingSection">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Loading test questions...</div>
+            <p style="color: #a3b8cc;">Please wait while we prepare your skill assessment.</p>
+        </div>
+
+        <div class="test-header" id="testHeader" style="display: none;">
+            <h1 class="test-title">Python Skill Assessment</h1>
+            <p class="test-description">
+                This assessment will test your Python programming knowledge. Answer all questions to the best of your ability.
+                You need to score at least 70% to qualify for this position.
+            </p>
+            
+            <div class="test-stats">
+                <div class="stat">
+                    <div class="stat-number" id="totalQuestions">0</div>
+                    <div class="stat-label">Questions</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">No Limit</div>
+                    <div class="stat-label">Time</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">70%</div>
+                    <div class="stat-label">Pass Score</div>
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <div class="questions-container" id="questionsContainer">
+            </div>
+
+        <div class="submit-section" id="submitSection" style="display: none;">
+            <h3 style="color: #64b5f6; margin-bottom: 1rem;">Ready to Submit?</h3>
+            <p style="color: #b3c5d7; margin-bottom: 2rem;">
+                Make sure you have answered all questions. Click the button below to submit your test.
+            </p>
+            <button class="btn-submit" id="submitBtn" onclick="submitTest()">Submit Test</button>
+        </div>
+
+        <div class="results-section" id="resultsSection">
+            <h2 class="results-title" id="resultsTitle">Test Completed!</h2>
+            <div class="score-display" id="scoreDisplay">0/0</div>
+            <div class="results-message" id="resultsMessage"></div>
+            <div class="redirect-info">Redirecting you back to the job board in <span id="countdown">5</span> seconds...</div>
+        </div>
+    </div>
+
+    <script>
+        let testData = null;
+        let userAnswers = {};
+        let jobData = null;
+        let currentUser = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const loggedInUserType = localStorage.getItem('loggedInUserType');
+            currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+
+            if (!loggedInUserType || loggedInUserType !== 'individual' || !currentUser) {
+                window.location.href = 'demo.html';
+                return;
+            }
+
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const skill = urlParams.get('skill');
+            const jobParam = urlParams.get('job');
+
+            if (!skill) {
+                alert('No skill specified for the test.');
+                window.location.href = 'individual_dashboard.html';
+                return;
+            }
+
+            if (jobParam) {
+                try {
+                    jobData = JSON.parse(decodeURIComponent(jobParam));
+                } catch (e) {
+                    console.error('Error parsing job data:', e);
+                }
+            }
+
+            // Load test data
+            loadTestData(skill);
+        });
+
+        async function loadTestData(skill) {
+            // Determine the JSON file based on the skill
+            const jsonFile = `${skill.toLowerCase()}_taketest.json`;
+            
+            try {
+                const response = await fetch(jsonFile);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                // The provided JSON has questions under a "questions" key
+                const allQuestions = data.questions;
+                
+                // Randomly select 10 questions
+                const selectedQuestions = selectRandomQuestions(allQuestions, 10);
+                testData = { questions: selectedQuestions };
+
+                // Hide loading and show test
+                document.getElementById('loadingSection').style.display = 'none';
+                document.getElementById('testHeader').style.display = 'block';
+                document.getElementById('questionsContainer').style.display = 'block';
+
+                // Initialize test
+                initializeTest();
+                
+            } catch (error) {
+                console.error('Error loading test data:', error);
+                document.getElementById('loadingText').textContent = 'Error: Could not load test questions.';
+                document.querySelector('.loading-spinner').style.display = 'none';
+                alert(`Failed to load test questions from ${jsonFile}. Make sure the file exists and is accessible.`);
+            }
+        }
+
+        function selectRandomQuestions(questions, count) {
+            const shuffled = [...questions].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, Math.min(count, questions.length));
+        }
+
+        function initializeTest() {
+            const totalQuestions = testData.questions.length;
+            document.getElementById('totalQuestions').textContent = totalQuestions;
+
+            const questionsContainer = document.getElementById('questionsContainer');
+            questionsContainer.innerHTML = testData.questions.map((question, index) => 
+                createQuestionHTML(question, index)
+            ).join('');
+
+            // Show submit section
+            document.getElementById('submitSection').style.display = 'block';
+
+            // Add event listeners for answer selection
+            setupAnswerListeners();
+            
+            // Update progress initially
+            updateProgress();
+        }
+
+        function createQuestionHTML(question, index) {
+            const optionsHTML = question.options.map((option, optionIndex) => `
+                <label class="option-label" for="q${index}_option${optionIndex}">
+                    <input type="radio" 
+                           class="option-radio" 
+                           name="question_${index}" 
+                           value="${optionIndex}" 
+                           id="q${index}_option${optionIndex}"
+                           onchange="handleAnswerSelect(${index}, ${optionIndex})">
+                    ${option}
+                </label>
+            `).join('');
+
+            return `
+                <div class="question-card">
+                    <div class="question-number">Question ${index + 1} of ${testData.questions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options-container">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        function setupAnswerListeners() {
+            const labels = document.querySelectorAll('.option-label');
+            labels.forEach(label => {
+                label.addEventListener('click', function() {
+                    // Remove selected class from siblings
+                    const parent = this.parentElement;
+                    parent.querySelectorAll('.option-label').forEach(sibling => {
+                        sibling.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                });
+            });
+        }
+
+        function handleAnswerSelect(questionIndex, answerIndex) {
+            userAnswers[questionIndex] = answerIndex;
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const totalQuestions = testData.questions.length;
+            const answeredQuestions = Object.keys(userAnswers).length;
+            const progressPercentage = (answeredQuestions / totalQuestions) * 100;
+            
+            document.getElementById('progressFill').style.width = progressPercentage + '%';
+            
+            // Enable/disable submit button based on completion
+            const submitBtn = document.getElementById('submitBtn');
+            if (answeredQuestions === totalQuestions) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Test';
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.textContent = `Answer All Questions (${answeredQuestions}/${totalQuestions})`;
+            }
+        }
+
+        function submitTest() {
+            // Calculate score
+            let correctAnswers = 0;
+            const totalQuestions = testData.questions.length;
+
+            for (let i = 0; i < totalQuestions; i++) {
+                const userAnswer = userAnswers[i];
+                const correctAnswer = testData.questions[i].answer_index;
+                
+                if (userAnswer === correctAnswer) {
+                    correctAnswers++;
+                }
+            }
+
+            const scorePercentage = Math.round((correctAnswers / totalQuestions) * 100);
+            const passed = scorePercentage >= 70;
+
+            // Hide test sections
+            document.getElementById('testHeader').style.display = 'none';
+            document.getElementById('questionsContainer').style.display = 'none';
+            document.getElementById('submitSection').style.display = 'none';
+
+            // Show results
+            displayResults(correctAnswers, totalQuestions, scorePercentage, passed);
+
+            // Update user stats
+            updateUserStats(passed);
+        }
+
+        function displayResults(correct, total, percentage, passed) {
+            const resultsSection = document.getElementById('resultsSection');
+            const resultsTitle = document.getElementById('resultsTitle');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const resultsMessage = document.getElementById('resultsMessage');
+
+            // Set title and styling based on pass/fail
+            if (passed) {
+                resultsTitle.textContent = 'Congratulations! You Passed!';
+                resultsTitle.className = 'results-title passed';
+                scoreDisplay.className = 'score-display passed';
+                resultsMessage.innerHTML = `
+                    Excellent work! You scored <strong>${percentage}%</strong> on the Python assessment.<br>
+                    ${jobData ? `Your application for <strong>${jobData.title}</strong> at <strong>${jobData.company}</strong> has been submitted successfully!` : 'You have successfully completed the skill test!'}
+                `;
+            } else {
+                resultsTitle.textContent = 'Test Completed';
+                resultsTitle.className = 'results-title failed';
+                scoreDisplay.className = 'score-display failed';
+                resultsMessage.innerHTML = `
+                    You scored <strong>${percentage}%</strong> on the Python assessment.<br>
+                    Unfortunately, you need at least 70% to qualify for this position. Keep practicing and try again!
+                `;
+            }
+
+            scoreDisplay.textContent = `${correct}/${total} (${percentage}%)`;
+            resultsSection.style.display = 'block';
+
+            // Start countdown redirect
+            startCountdown();
+        }
+
+        function updateUserStats(passed) {
+            const userStats = JSON.parse(localStorage.getItem('userStats_' + currentUser.email) || '{"applied": 0, "tests": 0}');
+            userStats.tests++;
+            
+            if (passed && jobData) {
+                userStats.applied++;
+            }
+            
+            localStorage.setItem('userStats_' + currentUser.email, JSON.stringify(userStats));
+        }
+
+        function startCountdown() {
+            let seconds = 5;
+            const countdownElement = document.getElementById('countdown');
+            
+            const interval = setInterval(() => {
+                seconds--;
+                countdownElement.textContent = seconds;
+                
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    window.location.href = 'individual_dashboard.html';
+                }
+            }, 1000);
+        }
+
+        // Prevent accidental page refresh during test
+        window.addEventListener('beforeunload', function(e) {
+            if (document.getElementById('questionsContainer').style.display !== 'none') {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>

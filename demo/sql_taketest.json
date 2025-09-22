@@ -1,0 +1,252 @@
+[
+  {
+    "q": "Which command is used to retrieve data from a database?",
+    "options": ["GET", "FETCH", "SELECT", "RETRIEVE"],
+    "ans": 2
+  },
+  {
+    "q": "Which clause is used to filter the results of a SELECT statement?",
+    "options": ["FILTER", "WHERE", "HAVING", "CONDITION"],
+    "ans": 1
+  },
+  {
+    "q": "Which SQL statement is used to insert new data into a database?",
+    "options": ["ADD NEW", "INSERT INTO", "UPDATE", "CREATE"],
+    "ans": 1
+  },
+  {
+    "q": "Which statement is used to delete all rows in a table without deleting the table itself?",
+    "options": ["DELETE", "DROP", "TRUNCATE", "REMOVE ALL"],
+    "ans": 2
+  },
+  {
+    "q": "Which keyword is used to sort the result-set in ascending or descending order?",
+    "options": ["SORT BY", "ORDER BY", "ARRANGE BY", "GROUP BY"],
+    "ans": 1
+  },
+  {
+    "q": "Which of the following is an aggregate function?",
+    "options": ["CONCAT", "FORMAT", "AVG", "NOW"],
+    "ans": 2
+  },
+  {
+    "q": "Which operator is used to search for a specified pattern in a column?",
+    "options": ["IN", "LIKE", "BETWEEN", "MATCH"],
+    "ans": 1
+  },
+  {
+    "q": "Which type of JOIN returns all rows when there is a match in either the left or the right table?",
+    "options": ["INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "FULL OUTER JOIN"],
+    "ans": 3
+  },
+  {
+    "q": "Which SQL command is used to change the structure of a database table?",
+    "options": ["MODIFY TABLE", "ALTER TABLE", "UPDATE TABLE", "CHANGE TABLE"],
+    "ans": 1
+  },
+  {
+    "q": "What does DML stand for?",
+    "options": ["Data Management Language", "Data Manipulation Language", "Data Modeling Language", "Data Mapping Language"],
+    "ans": 1
+  },
+  {
+    "q": "Which constraint ensures that all values in a column are different?",
+    "options": ["PRIMARY KEY", "NOT NULL", "UNIQUE", "FOREIGN KEY"],
+    "ans": 2
+  },
+  {
+    "q": "How can you select all the columns from a table named 'Customers'?",
+    "options": ["SELECT all FROM Customers", "SELECT Customers.*", "SELECT [all] FROM Customers", "SELECT * FROM Customers"],
+    "ans": 3
+  },
+  {
+    "q": "Which SQL function is used to count the number of rows in a result set?",
+    "options": ["COUNT(*)", "SUM()", "TOTAL()", "ROWS()"],
+    "ans": 0
+  },
+  {
+    "q": "Which clause is used with aggregate functions to group rows that have the same values?",
+    "options": ["GROUP BY", "ORDER BY", "HAVING", "WHERE"],
+    "ans": 0
+  },
+  {
+    "q": "What is a foreign key?",
+    "options": ["A key that uniquely identifies each record in a table.", "A key used to link two tables together.", "A key that is not part of the primary key.", "A key that is automatically generated."],
+    "ans": 1
+  },
+  {
+    "q": "Which SQL command saves all the transactions to the database permanently?",
+    "options": ["SAVE", "COMMIT", "ROLLBACK", "END"],
+    "ans": 1
+  },
+  {
+    "q": "What does the `AS` keyword do?",
+    "options": ["It is used to compare values.", "It is used to create a temporary name (alias) for a column or table.", "It is a condition.", "It is used to select a range of data."],
+    "ans": 1
+  },
+  {
+    "q": "Which operator combines the result-set of two or more SELECT statements (and returns unique rows)?",
+    "options": ["COMBINE", "MERGE", "UNION", "JOIN"],
+    "ans": 2
+  },
+  {
+    "q": "The `HAVING` clause is used to filter results from which other clause?",
+    "options": ["FROM", "WHERE", "JOIN", "GROUP BY"],
+    "ans": 3
+  },
+  {
+    "q": "Which of these is NOT a valid type of SQL command?",
+    "options": ["DCL", "TCL", "DML", "DPL"],
+    "ans": 3
+  },
+  {
+    "q": "What is a view in SQL?",
+    "options": ["A virtual table based on the result-set of an SQL statement.", "A base table that stores all data.", "A backup of a table.", "An index for a table."],
+    "ans": 0
+  },
+  {
+    "q": "Which of the following is a TCL (Transaction Control Language) command?",
+    "options": ["GRANT", "UPDATE", "ROLLBACK", "CREATE"],
+    "ans": 2
+  },
+  {
+    "q": "What does `NULL` represent in SQL?",
+    "options": ["The number zero", "An empty string", "A value that is unavailable, unassigned, unknown, or inapplicable", "A space character"],
+    "ans": 2
+  },
+  {
+    "q": "Which function would you use to get the current date and time in SQL?",
+    "options": ["NOW()", "CURRENT_TIME()", "GETDATE()", "Both A and C can be correct depending on the SQL dialect"],
+    "ans": 3
+  },
+  {
+    "q": "Which type of index is created automatically when a PRIMARY KEY constraint is defined?",
+    "options": ["Non-Clustered", "Clustered", "Unique", "No index is created"],
+    "ans": 1
+  },
+  {
+    "q": "What is the primary purpose of normalization in database design?",
+    "options": ["To increase data redundancy", "To reduce data redundancy and improve data integrity", "To make the database faster", "To create more tables"],
+    "ans": 1
+  },
+  {
+    "q": "A subquery can be used in which of the following clauses?",
+    "options": ["SELECT", "FROM", "WHERE", "All of the above"],
+    "ans": 3
+  },
+  {
+    "q": "What is the difference between DELETE and TRUNCATE?",
+    "options": ["TRUNCATE can be rolled back, DELETE cannot.", "DELETE is a DDL command, TRUNCATE is DML.", "TRUNCATE resets identity columns, DELETE does not.", "TRUNCATE can have a WHERE clause, DELETE cannot."],
+    "ans": 2
+  },
+  {
+    "q": "Which window function is used to assign a unique rank to each row within a partition of a result set?",
+    "options": ["LEAD", "LAG", "ROW_NUMBER", "PARTITION"],
+    "ans": 2
+  },
+  {
+    "q": "What does the COALESCE function do?",
+    "options": ["It returns the first non-null value in a list of expressions.", "It concatenates two strings.", "It converts a value to a specified data type.", "It calculates an average."],
+    "ans": 0
+  },
+  {
+    "q": "What are Common Table Expressions (CTEs) used for?",
+    "options": ["To create permanent tables.", "To simplify complex queries by creating temporary, named result sets.", "To define database schemas.", "To control user permissions."],
+    "ans": 1
+  },
+  {
+    "q": "What is a self-join?",
+    "options": ["A join that combines two different tables.", "A regular join, but the table is joined with itself.", "A join that returns all rows from both tables.", "A join that is performed automatically."],
+    "ans": 1
+  },
+  {
+    "q": "Which of the following is true about a Primary Key?",
+    "options": ["It can contain NULL values.", "A table can have multiple Primary Keys.", "It must contain unique values and cannot contain NULL values.", "It is the same as a UNIQUE constraint."],
+    "ans": 2
+  },
+  {
+    "q": "Which operator is used to combine multiple conditions in a WHERE clause, where any of the conditions must be true?",
+    "options": ["AND", "OR", "BETWEEN", "IN"],
+    "ans": 1
+  },
+  {
+    "q": "What is an SQL Injection attack?",
+    "options": ["An attack that injects malicious SQL code into a query to manipulate the database.", "A method to speed up database queries.", "A type of database backup.", "A process of adding new data into the database."],
+    "ans": 0
+  },
+  {
+    "q": "What is the purpose of the `CASE` statement?",
+    "options": ["To create loops in SQL.", "To go through conditions and return a value when the first condition is met.", "To define the data type of a column.", "To sort results."],
+    "ans": 1
+  },
+  {
+    "q": "Which of the following is NOT a standard SQL data type?",
+    "options": ["VARCHAR", "INT", "BOOLEAN", "DECIMAL"],
+    "ans": 2
+  },
+  {
+    "q": "The `UNION ALL` operator differs from `UNION` in that:",
+    "options": ["`UNION ALL` is faster.", "`UNION ALL` includes duplicate rows, while `UNION` removes them.", "`UNION` is an older syntax.", "`UNION ALL` can only combine two tables."],
+    "ans": 1
+  },
+  {
+    "q": "What does a `LEFT JOIN` do?",
+    "options": ["Returns all records from the right table, and the matched records from the left table.", "Returns records that have matching values in both tables.", "Returns all records from the left table, and the matched records from the right table.", "Returns only records from the left table."],
+    "ans": 2
+  },
+  {
+    "q": "Which statement is used to give a user permission to access database objects?",
+    "options": ["GRANT", "REVOKE", "ALLOW", "PERMISSION"],
+    "ans": 0
+  },
+  {
+    "q": "What is a stored procedure?",
+    "options": ["A pre-compiled collection of one or more SQL statements stored in the database.", "A log of all database transactions.", "A temporary table.", "A database schema."],
+    "ans": 0
+  },
+  {
+    "q": "Which form of database normalization involves removing transitive dependencies?",
+    "options": ["First Normal Form (1NF)", "Second Normal Form (2NF)", "Third Normal Form (3NF)", "Boyce-Codd Normal Form (BCNF)"],
+    "ans": 2
+  },
+  {
+    "q": "The `DISTINCT` keyword is used to:",
+    "options": ["Return only different (unique) values.", "Select all values.", "Count the number of values.", "Sort values."],
+    "ans": 0
+  },
+  {
+    "q": "Which command would you use to remove a stored procedure named `GetUser`?",
+    "options": ["DELETE PROCEDURE GetUser", "DROP PROCEDURE GetUser", "REMOVE PROCEDURE GetUser", "ERASE PROCEDURE GetUser"],
+    "ans": 1
+  },
+  {
+    "q": "What is ACID in the context of database transactions?",
+    "options": ["A set of properties (Atomicity, Consistency, Isolation, Durability) that guarantee reliable transaction processing.", "A type of database schema.", "A standard for SQL query syntax.", "A security protocol for databases."],
+    "ans": 0
+  },
+  {
+    "q": "Which of the following functions returns the largest value of the selected column?",
+    "options": ["MAX()", "LARGE()", "TOP()", "HIGH()"],
+    "ans": 0
+  },
+  {
+    "q": "What is a trigger in SQL?",
+    "options": ["A special type of stored procedure that automatically runs when an event occurs in the database server.", "A user-defined function.", "A constraint on a table.", "An alarm for the DBA."],
+    "ans": 0
+  },
+  {
+    "q": "Which operator tests if a value is within a range of values (inclusive)?",
+    "options": ["IN", "RANGE", "WITHIN", "BETWEEN"],
+    "ans": 3
+  },
+  {
+    "q": "Which clause is used to provide a default value for a column?",
+    "options": ["DEFAULT", "VALUE", "SET", "INITIAL"],
+    "ans": 0
+  },
+  {
+    "q": "What is the result of `SELECT 'Hello' + ' ' + 'World';` in most SQL dialects?",
+    "options": ["An error", "HelloWorld", "Hello World", "It depends on the concatenation operator of the specific SQL dialect"],
+    "ans": 3
+  }
+]

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Dashboard - AI Career Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #2d4a6b 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .header {
+            background: rgba(26, 35, 50, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(100, 181, 246, 0.2);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #64b5f6 0%, #42a5f5 50%, #2196f3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .company-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .company-welcome {
+            color: #b3c5d7;
+        }
+
+        .company-name {
+            color: #64b5f6;
+            font-weight: 600;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(244, 67, 54, 0.4);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .main-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .section-card {
+            background: rgba(26, 35, 50, 0.6);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(100, 181, 246, 0.2);
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .sidebar-card {
+            background: rgba(100, 181, 246, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #64b5f6;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #64b5f6;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #b3c5d7;
+            font-weight: 600;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid rgba(100, 181, 246, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #64b5f6;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #64b5f6;
+            border: 2px solid #64b5f6;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: #64b5f6;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .posted-jobs {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .job-item {
+            background: rgba(100, 181, 246, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(100, 181, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .job-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(33, 150, 243, 0.2);
+            border-color: rgba(100, 181, 246, 0.4);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 1rem;
+            color: #a3b8cc;
+            font-size: 0.9rem;
+        }
+
+        .job-type-badge {
+            background: linear-gradient(135deg, #2196f3, #1976d2);
+            color: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .job-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .skill-tag {
+            background: rgba(100, 181, 246, 0.2);
+            color: #64b5f6;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #64b5f6;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #a3b8cc;
+        }
+
+        .company-profile {
+            text-align: center;
+        }
+
+        .company-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #64b5f6, #2196f3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .company-profile-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-role {
+            color: #a3b8cc;
+            font-size: 0.9rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #a3b8cc;
+            font-style: italic;
+            padding: 2rem;
+        }
+
+        .success-message {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .error-message {
+            color: #f44336;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">AI Career Platform</div>
+        <div class="company-info">
+            <span class="company-welcome">Welcome,</span>
+            <span class="company-name" id="companyName">Company</span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="dashboard-grid">
+            <main class="main-section">
+                <div class="section-card">
+                    <h1 class="section-title">
+                        📋 Post a New Job Listing
+                    </h1>
+                    <div class="success-message" id="successMessage">
+                        Job posted successfully! 🎉
+                    </div>
+                    <form id="jobPostingForm">
+                        <div class="form-group">
+                            <label class="form-label">Job Title</label>
+                            <input type="text" class="form-input" id="jobTitle" required>
+                            <div class="error-message" id="jobTitleError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Required Skills (comma-separated)</label>
+                            <input type="text" class="form-input" id="requiredSkills" 
+                                   placeholder="e.g., Python, JavaScript, React, Machine Learning" required>
+                            <div class="error-message" id="requiredSkillsError"></div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Job Type</label>
+                                <select class="form-select" id="jobType" required>
+                                    <option value="">Select Job Type</option>
+                                    <option value="Internship">Internship</option>
+                                    <option value="Full-time">Full-time</option>
+                                    <option value="Part-time">Part-time</option>
+                                    <option value="Contract">Contract</option>
+                                </select>
+                                <div class="error-message" id="jobTypeError"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Work Mode</label>
+                                <select class="form-select" id="workMode" required>
+                                    <option value="">Select Work Mode</option>
+                                    <option value="Remote">Remote</option>
+                                    <option value="Hybrid">Hybrid</option>
+                                    <option value="In-Office">In-Office</option>
+                                </select>
+                                <div class="error-message" id="workModeError"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Location</label>
+                                <input type="text" class="form-input" id="jobLocation" required>
+                                <div class="error-message" id="jobLocationError"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Stipend / Salary</label>
+                                <input type="text" class="form-input" id="jobSalary" 
+                                       placeholder="e.g., ₹50k/month" required>
+                                <div class="error-message" id="jobSalaryError"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Job Description</label>
+                            <textarea class="form-textarea" id="jobDescription" 
+                                      placeholder="Describe the role, responsibilities, and requirements..." required></textarea>
+                            <div class="error-message" id="jobDescriptionError"></div>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Post Job</button>
+                    </form>
+                </div>
+
+                <div class="section-card">
+                    <h2 class="section-title">
+                        💼 Your Posted Jobs
+                    </h2>
+                    <div class="posted-jobs" id="postedJobs">
+                        <div class="empty-state">
+                            No jobs posted yet. Post your first job above! 
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <aside class="sidebar">
+                <div class="sidebar-card company-profile">
+                    <div class="company-avatar" id="companyAvatar">C</div>
+                    <div class="company-profile-name" id="companyProfileName">Company Name</div>
+                    <div class="company-role">Employer</div>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">📊 Company Stats</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalJobs">0</div>
+                            <div class="stat-label">Jobs Posted</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalApplications">0</div>
+                            <div class="stat-label">Applications</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">🚀 Quick Actions</h3>
+                    <button class="btn-secondary" onclick="manageApplications()">Manage Applications</button>
+                    <button class="btn-secondary" onclick="viewAnalytics()">View Analytics</button>
+                    <button class="btn-secondary" onclick="updateCompanyProfile()">Update Profile</button>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">💡 Tips</h3>
+                    <div style="color: #a3b8cc; font-size: 0.9rem; line-height: 1.5;">
+                        • Use specific skill requirements<br>
+                        • Include clear job descriptions<br>
+                        • Set competitive salaries<br>
+                        • Update regularly for better visibility
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in and is a company
+        document.addEventListener('DOMContentLoaded', function() {
+            const loggedInUserType = localStorage.getItem('loggedInUserType');
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+
+            if (!loggedInUserType || loggedInUserType !== 'company' || !currentUser) {
+                window.location.href = 'demo.html';
+                return;
+            }
+
+            // Initialize dashboard
+            initializeDashboard(currentUser);
+            loadPostedJobs();
+            setupFormHandler();
+        });
+
+        function initializeDashboard(company) {
+            // Update company info
+            document.getElementById('companyName').textContent = company.companyName;
+            document.getElementById('companyProfileName').textContent = company.companyName;
+            document.getElementById('companyAvatar').textContent = company.companyName.charAt(0).toUpperCase();
+
+            // Load company stats
+            const companyJobs = JSON.parse(localStorage.getItem('companyJobs') || '[]');
+            const companySpecificJobs = companyJobs.filter(job => job.company === company.companyName);
+            
+            document.getElementById('totalJobs').textContent = companySpecificJobs.length;
+            document.getElementById('totalApplications').textContent = companySpecificJobs.length * Math.floor(Math.random() * 10 + 1); // Simulated applications
+        }
+
+        function setupFormHandler() {
+            document.getElementById('jobPostingForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                postJob();
+            });
+        }
+
+        function postJob() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            
+            // Get form data
+            const title = document.getElementById('jobTitle').value.trim();
+            const skills = document.getElementById('requiredSkills').value.trim();
+            const type = document.getElementById('jobType').value;
+            const workMode = document.getElementById('workMode').value;
+            const location = document.getElementById('jobLocation').value.trim();
+            const salary = document.getElementById('jobSalary').value.trim();
+            const description = document.getElementById('jobDescription').value.trim();
+
+            // Validation
+            clearErrors();
+            let hasError = false;
+
+            if (!title) {
+                showError('jobTitleError', 'Job title is required');
+                hasError = true;
+            }
+
+            if (!skills) {
+                showError('requiredSkillsError', 'Required skills are required');
+                hasError = true;
+            }
+
+            if (!type) {
+                showError('jobTypeError', 'Job type is required');
+                hasError = true;
+            }
+
+            if (!workMode) {
+                showError('workModeError', 'Work mode is required');
+                hasError = true;
+            }
+
+            if (!location) {
+                showError('jobLocationError', 'Location is required');
+                hasError = true;
+            }
+
+            if (!salary) {
+                showError('jobSalaryError', 'Salary/Stipend is required');
+                hasError = true;
+            }
+
+            if (!description) {
+                showError('jobDescriptionError', 'Job description is required');
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            // Create job object
+            const newJob = {
+                id: Date.now(),
+                company: currentUser.companyName,
+                title: title,
+                skills: skills.split(',').map(skill => skill.trim()),
+                type: type,
+                workMode: workMode,
+                location: location,
+                salary: salary,
+                description: description,
+                datePosted: new Date().toLocaleDateString(),
+                applications: 0
+            };
+
+            // Save to localStorage
+            const existingJobs = JSON.parse(localStorage.getItem('companyJobs') || '[]');
+            existingJobs.push(newJob);
+            localStorage.setItem('companyJobs', JSON.stringify(existingJobs));
+
+            // Show success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 5000);
+
+            // Clear form
+            document.getElementById('jobPostingForm').reset();
+
+            // Reload posted jobs and update stats
+            loadPostedJobs();
+            initializeDashboard(currentUser);
+
+            // Show notification
+            showNotification('🎉 Job posted successfully! It will now appear in the job listings.');
+        }
+
+        function loadPostedJobs() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const allJobs = JSON.parse(localStorage.getItem('companyJobs') || '[]');
+            const companyJobs = allJobs.filter(job => job.company === currentUser.companyName);
+            
+            const postedJobsContainer = document.getElementById('postedJobs');
+            
+            if (companyJobs.length === 0) {
+                postedJobsContainer.innerHTML = `
+                    <div class="empty-state">
+                        No jobs posted yet. Post your first job above! 
+                    </div>
+                `;
+                return;
+            }
+
+            postedJobsContainer.innerHTML = companyJobs.map(job => createJobItem(job)).join('');
+        }
+
+        function createJobItem(job) {
+            const skillTags = job.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('');
+            
+            return `
+                <div class="job-item">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">${job.title}</h3>
+                            <div class="job-meta">
+                                <span>📅 ${job.datePosted}</span>
+                                <span>📍 ${job.location}</span>
+                                <span>💰 ${job.salary}</span>
+                                <span>🏢 ${job.workMode}</span>
+                            </div>
+                        </div>
+                        <div class="job-type-badge">${job.type}</div>
+                    </div>
+                    <p style="color: #b3c5d7; margin-bottom: 0.75rem; line-height: 1.4;">${job.description.substring(0, 150)}${job.description.length > 150 ? '...' : ''}</p>
+                    <div class="job-skills">${skillTags}</div>
+                </div>
+            `;
+        }
+
+        function manageApplications() {
+            showNotification('📋 Application management feature coming soon!');
+        }
+
+        function viewAnalytics() {
+            showNotification('📊 Analytics dashboard coming soon!');
+        }
+
+        function updateCompanyProfile() {
+            showNotification('📄 Company profile update feature coming soon!');
+        }
+
+        function logout() {
+            localStorage.removeItem('loggedInUserType');
+            localStorage.removeItem('currentUser');
+            showNotification('👋 Logged out successfully. Redirecting...');
+            setTimeout(() => {
+                window.location.href = 'demo.html';
+            }, 1500);
+        }
+
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+
+        function clearErrors() {
+            const errorElements = document.querySelectorAll('.error-message');
+            errorElements.forEach(element => {
+                element.style.display = 'none';
+                element.textContent = '';
+            });
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 12px;
+                box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+                z-index: 10000;
+                font-weight: 500;
+                transform: translateX(400px);
+                transition: transform 0.3s ease;
+                font-size: 1rem;
+                max-width: 300px;
+                line-height: 1.4;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(400px)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 4000);
+        }
+    </script>
+</body>
+</html>

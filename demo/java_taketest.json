@@ -1,0 +1,252 @@
+[
+  {
+    "q": "Which of the following is not a primitive data type in Java?",
+    "options": ["int", "String", "char", "boolean"],
+    "ans": 1
+  },
+  {
+    "q": "What is the entry point for any Java program?",
+    "options": ["main() method", "start() method", "init() method", "run() method"],
+    "ans": 0
+  },
+  {
+    "q": "Which keyword is used to create an instance of a class?",
+    "options": ["new", "create", "instanceof", "this"],
+    "ans": 0
+  },
+  {
+    "q": "What is the default value of an integer variable (int) in Java?",
+    "options": ["1", "0", "null", "-1"],
+    "ans": 1
+  },
+  {
+    "q": "Which of these is used to inherit a class in Java?",
+    "options": ["implements", "super", "extends", "this"],
+    "ans": 2
+  },
+  {
+    "q": "Which access modifier provides the widest accessibility?",
+    "options": ["private", "default", "protected", "public"],
+    "ans": 3
+  },
+  {
+    "q": "What is the size of a `char` in Java?",
+    "options": ["8 bits", "16 bits", "32 bits", "64 bits"],
+    "ans": 1
+  },
+  {
+    "q": "Which of these is used to define a constant in Java?",
+    "options": ["const", "static", "final", "let"],
+    "ans": 2
+  },
+  {
+    "q": "Which of these selection statements tests for equality?",
+    "options": ["if", "switch", "for", "while"],
+    "ans": 1
+  },
+  {
+    "q": "What will be the output of `System.out.println(\"Hello\".charAt(1));`?",
+    "options": ["H", "e", "l", "o"],
+    "ans": 1
+  },
+  {
+    "q": "Which of these cannot be a variable name in Java?",
+    "options": ["_variable", "$variable", "1variable", "variable1"],
+    "ans": 2
+  },
+  {
+    "q": "What is the superclass of all classes in Java?",
+    "options": ["System", "String", "Object", "Main"],
+    "ans": 2
+  },
+  {
+    "q": "Which data structure stores unique elements and is unordered?",
+    "options": ["List", "Set", "Map", "Array"],
+    "ans": 1
+  },
+  {
+    "q": "What is the purpose of the `super` keyword?",
+    "options": ["To call the constructor of the current class", "To access members of the superclass", "To create a new instance", "To refer to the current instance"],
+    "ans": 1
+  },
+  {
+    "q": "Which concept allows a method to have the same name but different parameters?",
+    "options": ["Inheritance", "Polymorphism", "Encapsulation", "Overloading"],
+    "ans": 3
+  },
+  {
+    "q": "Which of these exceptions is a checked exception?",
+    "options": ["NullPointerException", "ArrayIndexOutOfBoundsException", "IOException", "ArithmeticException"],
+    "ans": 2
+  },
+  {
+    "q": "Which keyword is used to prevent method overriding?",
+    "options": ["static", "private", "final", "abstract"],
+    "ans": 2
+  },
+  {
+    "q": "An interface can contain:",
+    "options": ["Only abstract methods", "Only concrete methods", "Constructors", "Abstract, default, and static methods"],
+    "ans": 3
+  },
+  {
+    "q": "What does the `finally` block do in a try-catch-finally statement?",
+    "options": ["It executes only when an exception occurs.", "It executes only when no exception occurs.", "It always executes regardless of whether an exception occurs.", "It executes only if the catch block is not present."],
+    "ans": 2
+  },
+  {
+    "q": "Which of the following is a mutable class?",
+    "options": ["String", "Integer", "StringBuilder", "Boolean"],
+    "ans": 2
+  },
+  {
+    "q": "What is the use of the `instanceof` operator?",
+    "options": ["To compare two object references", "To create a new instance of a class", "To check if an object is an instance of a specific class or interface", "To get the class of an object"],
+    "ans": 2
+  },
+  {
+    "q": "What is the correct syntax for a for-each loop?",
+    "options": ["for(int i : array)", "for(int i; i < array.length; i++)", "for(each int i in array)", "foreach(int i in array)"],
+    "ans": 0
+  },
+  {
+    "q": "Which method must be implemented by a class implementing the `Runnable` interface?",
+    "options": ["start()", "execute()", "init()", "run()"],
+    "ans": 3
+  },
+  {
+    "q": "What is abstraction in Java?",
+    "options": ["Binding data and methods together", "Hiding implementation details and showing only functionality", "Acquiring properties from a parent class", "A single action performed in different ways"],
+    "ans": 1
+  },
+  {
+    "q": "What is the purpose of the garbage collector?",
+    "options": ["To compile Java code", "To free memory occupied by objects that are no longer referenced", "To handle exceptions", "To manage threads"],
+    "ans": 1
+  },
+  {
+    "q": "Which of these is a correct way to create a `HashMap`?",
+    "options": ["HashMap<String, Integer> map = new HashMap<>();", "HashMap map = new HashMap<String, Integer>();", "HashMap<String, Integer> map = new HashMap<String, Integer>();", "All of the above"],
+    "ans": 3
+  },
+  {
+    "q": "What is the `this` keyword used for?",
+    "options": ["To refer to the current object instance", "To call a static method", "To refer to the superclass", "To create a new object"],
+    "ans": 0
+  },
+  {
+    "q": "A class that cannot be instantiated is called?",
+    "options": ["Final class", "Static class", "Abstract class", "Private class"],
+    "ans": 2
+  },
+  {
+    "q": "What is the result of `10 % 3`?",
+    "options": ["3", "0", "1", "3.33"],
+    "ans": 2
+  },
+  {
+    "q": "Which package is automatically imported into every Java program?",
+    "options": ["java.util", "java.io", "java.net", "java.lang"],
+    "ans": 3
+  },
+  {
+    "q": "What is method overriding?",
+    "options": ["Defining a method with the same name but different parameters in the same class", "Defining a method in a subclass with the same signature as a method in its superclass", "Defining multiple constructors in a class", "A method that calls itself"],
+    "ans": 1
+  },
+  {
+    "q": "Which collection class allows null values but not duplicate values?",
+    "options": ["ArrayList", "HashSet", "TreeMap", "Vector"],
+    "ans": 1
+  },
+  {
+    "q": "What is the difference between `==` and `.equals()` for String objects?",
+    "options": ["There is no difference", "`==` compares object references, while `.equals()` compares the string content", "`.equals()` compares object references, while `==` compares the string content", "`==` is faster than `.equals()`"],
+    "ans": 1
+  },
+  {
+    "q": "What is a transient variable?",
+    "options": ["A variable that is shared among all instances of a class", "A variable that cannot be changed", "A variable that is not serialized during object serialization", "A variable local to a method"],
+    "ans": 2
+  },
+  {
+    "q": "Which keyword is used for thread synchronization?",
+    "options": ["sync", "volatile", "synchronized", "atomic"],
+    "ans": 2
+  },
+  {
+    "q": "Which of these is a functional interface?",
+    "options": ["An interface with exactly one abstract method", "An interface with multiple static methods", "An interface with no methods", "An interface with only default methods"],
+    "ans": 0
+  },
+  {
+    "q": "What is the purpose of the `volatile` keyword?",
+    "options": ["To make a variable constant", "To indicate that a variable's value will be modified by different threads", "To prevent a variable from being serialized", "To synchronize access to a method"],
+    "ans": 1
+  },
+  {
+    "q": "What is the role of a ClassLoader in Java?",
+    "options": ["To compile .java files to .class files", "To load class files into memory at runtime", "To execute the main method", "To manage the heap memory"],
+    "ans": 1
+  },
+  {
+    "q": "What is type casting?",
+    "options": ["Converting a primitive type to an object", "Assigning a value of one primitive data type to another type", "Creating an array of objects", "Comparing two different data types"],
+    "ans": 1
+  },
+  {
+    "q": "What is the `break` statement used for?",
+    "options": ["To terminate the current loop or switch statement", "To skip the current iteration of a loop", "To return a value from a method", "To throw an exception"],
+    "ans": 0
+  },
+  {
+    "q": "Which collection is synchronized and thread-safe?",
+    "options": ["ArrayList", "LinkedList", "HashMap", "Vector"],
+    "ans": 3
+  },
+  {
+    "q": "What is the purpose of the `default` keyword in an interface (since Java 8)?",
+    "options": ["To specify the default access modifier", "To provide a default implementation for a method", "To define a default constructor", "To mark a method as final"],
+    "ans": 1
+  },
+  {
+    "q": "What is a lambda expression?",
+    "options": ["A way to create an anonymous class", "A block of code that can be passed around to be executed later", "A special type of comment", "A way to handle exceptions"],
+    "ans": 1
+  },
+  {
+    "q": "Which of the following is true about constructors?",
+    "options": ["They have a return type", "They can be abstract", "They must have the same name as the class", "They are inherited by subclasses"],
+    "ans": 2
+  },
+  {
+    "q": "What is the difference between `throw` and `throws`?",
+    "options": ["`throw` is used to declare an exception, `throws` is used to trigger it", "`throws` is used for runtime exceptions, `throw` for checked exceptions", "`throw` is used to manually trigger an exception, `throws` is used in a method signature to declare exceptions it might throw", "They are interchangeable"],
+    "ans": 2
+  },
+  {
+    "q": "What does the `static` keyword mean when applied to a method?",
+    "options": ["The method can only be called from static contexts", "The method belongs to the class rather than an instance of the class", "The method cannot be overridden", "The method can be accessed only within the same package"],
+    "ans": 1
+  },
+  {
+    "q": "What is the output of `Math.round(2.6)`?",
+    "options": ["2.0", "2", "3.0", "3"],
+    "ans": 3
+  },
+  {
+    "q": "In which part of memory are String objects created with string literals stored?",
+    "options": ["Heap", "Stack", "String Constant Pool", "Method Area"],
+    "ans": 2
+  },
+  {
+    "q": "Which of these is not a component of the Java Development Kit (JDK)?",
+    "options": ["JVM (Java Virtual Machine)", "JRE (Java Runtime Environment)", "Javac (Java Compiler)", "JDB (Java Debugger)"],
+    "ans": 1
+  },
+  {
+    "q": "Which of the following is a feature of Java 8 Streams?",
+    "options": ["They store data", "They are lazy and perform operations on demand", "They can only be traversed once", "Both B and C"],
+    "ans": 3
+  }
+]
