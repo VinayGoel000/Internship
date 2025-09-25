@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Individual Dashboard - AI Career Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #2d4a6b 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .header {
+            background: rgba(26, 35, 50, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(100, 181, 246, 0.2);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #64b5f6 0%, #42a5f5 50%, #2196f3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-welcome {
+            color: #b3c5d7;
+        }
+
+        .user-name {
+            color: #64b5f6;
+            font-weight: 600;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(244, 67, 54, 0.4);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .main-section {
+            background: rgba(26, 35, 50, 0.6);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(100, 181, 246, 0.2);
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .sidebar-card {
+            background: rgba(100, 181, 246, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #64b5f6;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #64b5f6;
+            margin-bottom: 1rem;
+        }
+
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .job-card {
+            background: rgba(100, 181, 246, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(100, 181, 246, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(33, 150, 243, 0.3);
+            border-color: rgba(100, 181, 246, 0.4);
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #64b5f6, #2196f3);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .company-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .company-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #64b5f6, #42a5f5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .company-details h3 {
+            color: #64b5f6;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .company-details p {
+            color: #a3b8cc;
+            font-size: 0.9rem;
+        }
+
+        .job-type {
+            background: linear-gradient(135deg, #2196f3, #1976d2);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+
+        .job-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-tag {
+            background: rgba(100, 181, 246, 0.2);
+            color: #64b5f6;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .job-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .job-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #b3c5d7;
+            font-size: 0.9rem;
+        }
+
+        .apply-btn {
+            background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #64b5f6;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #a3b8cc;
+        }
+
+        .profile-card {
+            text-align: center;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #64b5f6, #2196f3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+            color: white;
+        }
+
+        .profile-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-role {
+            color: #a3b8cc;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .job-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .job-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">AI Career Platform</div>
+        <div class="user-info">
+            <span class="user-welcome">Welcome back,</span>
+            <span class="user-name" id="userName">Individual</span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="dashboard-grid">
+            <main class="main-section">
+                <h1 class="section-title">
+                    💼 Available Jobs & Internships
+                </h1>
+                <div class="job-grid" id="jobGrid">
+                    <!-- Jobs will be dynamically loaded here -->
+                </div>
+            </main>
+
+            <aside class="sidebar">
+                <div class="sidebar-card profile-card">
+                    <div class="profile-avatar" id="profileAvatar">U</div>
+                    <div class="profile-name" id="profileName">User Name</div>
+                    <div class="profile-role">Job Seeker</div>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">📊 Your Stats</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="appliedJobs">0</div>
+                            <div class="stat-label">Applied</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="testsCompleted">0</div>
+                            <div class="stat-label">Tests</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="profileViews">12</div>
+                            <div class="stat-label">Views</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">📄 Resume</h3>
+                    <div id="resumeStatus">
+                        <!-- Resume status will be dynamically loaded here -->
+                    </div>
+                    <button class="apply-btn" style="margin-top: 1rem;" onclick="goToResumeUploader()">Upload / Change Resume</button>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">🎯 Quick Actions</h3>
+                    <button class="apply-btn" style="margin-bottom: 0.5rem;" onclick="updateProfile()">Update Profile</button>
+                    <button class="apply-btn" onclick="viewApplications()">View Applications</button>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in and is an individual
+        document.addEventListener('DOMContentLoaded', function() {
+            const loggedInUserType = localStorage.getItem('loggedInUserType');
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+
+            if (!loggedInUserType || loggedInUserType !== 'individual' || !currentUser) {
+                window.location.href = 'demo.html';
+                return;
+            }
+
+            // Initialize dashboard
+            initializeDashboard(currentUser);
+            loadJobs();
+        });
+
+        function initializeDashboard(user) {
+            // Update user info
+            document.getElementById('userName').textContent = user.name;
+            document.getElementById('profileName').textContent = user.name;
+            document.getElementById('profileAvatar').textContent = user.name.charAt(0).toUpperCase();
+
+            // Load user stats from localStorage
+            const userStats = JSON.parse(localStorage.getItem('userStats_' + user.email) || '{"applied": 0, "tests": 0}');
+            document.getElementById('appliedJobs').textContent = userStats.applied;
+            document.getElementById('testsCompleted').textContent = userStats.tests;
+            
+            // Load resume status
+            updateResumeStatus(user);
+        }
+
+        function updateResumeStatus(user) {
+            const resumeStatusDiv = document.getElementById('resumeStatus');
+            
+            if (user.resumeFileName) {
+                const uploadDate = user.resumeUploadDate ? new Date(user.resumeUploadDate).toLocaleDateString() : 'Unknown';
+                resumeStatusDiv.innerHTML = `
+                    <div style="background: rgba(76, 175, 80, 0.1); padding: 1rem; border-radius: 8px; border: 1px solid rgba(76, 175, 80, 0.3);">
+                        <div style="color: #4caf50; font-weight: 600; margin-bottom: 0.5rem;">Current Resume:</div>
+                        <div style="color: white; font-weight: 500; margin-bottom: 0.25rem;">${user.resumeFileName}</div>
+                        <div style="color: #a3b8cc; font-size: 0.8rem;">Uploaded: ${uploadDate}</div>
+                    </div>
+                `;
+            } else {
+                resumeStatusDiv.innerHTML = `
+                    <div style="background: rgba(100, 181, 246, 0.1); padding: 1rem; border-radius: 8px; border: 1px solid rgba(100, 181, 246, 0.3); text-align: center;">
+                        <div style="color: #64b5f6; font-weight: 600; margin-bottom: 0.5rem;">No resume uploaded yet</div>
+                        <div style="color: #a3b8cc; font-size: 0.9rem;">Upload your resume to improve your job applications</div>
+                    </div>
+                `;
+            }
+        }
+
+        function goToResumeUploader() {
+            window.location.href = 'resume_uploader.html';
+        }
+
+        function loadJobs() {
+            const jobGrid = document.getElementById('jobGrid');
+            
+            // Sample jobs (in a real app, these would come from an API)
+            const jobs = [
+                {
+                    id: 1,
+                    company: 'Google',
+                    title: 'Software Engineer Intern',
+                    location: 'Bangalore',
+                    salary: '₹80k/month',
+                    type: 'Internship',
+                    skills: ['Python', 'JavaScript', 'React'],
+                    description: 'Join Google as a Software Engineer Intern and work on cutting-edge technology projects.'
+                },
+                {
+                    id: 2,
+                    company: 'Microsoft',
+                    title: 'Data Science Intern',
+                    location: 'Hyderabad',
+                    salary: '₹75k/month',
+                    type: 'Internship',
+                    skills: ['Python', 'Machine Learning', 'SQL'],
+                    description: 'Work with Microsoft\'s data science team on innovative AI projects.'
+                },
+                {
+                    id: 3,
+                    company: 'Amazon',
+                    title: 'Product Manager Intern',
+                    location: 'Mumbai',
+                    salary: '₹90k/month',
+                    type: 'Full-time',
+                    skills: ['Product Management', 'Analytics', 'Leadership'],
+                    description: 'Lead product initiatives at Amazon and drive innovation.'
+                },
+                {
+                    id: 4,
+                    company: 'Netflix',
+                    title: 'Frontend Developer',
+                    location: 'Remote',
+                    salary: '₹95k/month',
+                    type: 'Full-time',
+                    skills: ['React', 'TypeScript', 'CSS'],
+                    description: 'Build amazing user experiences for millions of Netflix users worldwide.'
+                },
+                {
+                    id: 5,
+                    company: 'Spotify',
+                    title: 'Mobile App Developer',
+                    location: 'Bangalore',
+                    salary: '₹85k/month',
+                    type: 'Internship',
+                    skills: ['React Native', 'iOS', 'Android'],
+                    description: 'Develop mobile applications that bring music to life for millions of users.'
+                },
+                {
+                    id: 6,
+                    company: 'Uber',
+                    title: 'Backend Engineer',
+                    location: 'Delhi',
+                    salary: '₹100k/month',
+                    type: 'Full-time',
+                    skills: ['Node.js', 'MongoDB', 'AWS'],
+                    description: 'Build scalable backend systems that power Uber\'s global platform.'
+                }
+            ];
+
+            // Load jobs posted by companies from localStorage
+            const companyJobs = JSON.parse(localStorage.getItem('companyJobs') || '[]');
+            const allJobs = [...jobs, ...companyJobs];
+
+            jobGrid.innerHTML = allJobs.map(job => createJobCard(job)).join('');
+        }
+
+        function createJobCard(job) {
+            const companyInitial = job.company.charAt(0).toUpperCase();
+            const skillTags = job.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('');
+            
+            return `
+                <div class="job-card" onclick="applyToJob(${JSON.stringify(job).replace(/"/g, '&quot;')})">
+                    <div class="job-header">
+                        <div class="company-info">
+                            <div class="company-logo">${companyInitial}</div>
+                            <div class="company-details">
+                                <h3>${job.company}</h3>
+                                <p>${job.location}</p>
+                            </div>
+                        </div>
+                        <div class="job-type">${job.type}</div>
+                    </div>
+                    <h2 class="job-title">${job.title}</h2>
+                    <div class="job-skills">${skillTags}</div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <span>💰</span>
+                            <span>${job.salary}</span>
+                        </div>
+                        <div class="job-detail">
+                            <span>📍</span>
+                            <span>${job.location}</span>
+                        </div>
+                    </div>
+                    <button class="apply-btn" onclick="event.stopPropagation(); applyToJob(${JSON.stringify(job).replace(/"/g, '&quot;')})">Apply Now</button>
+                </div>
+            `;
+        }
+
+        function applyToJob(job) {
+            // Check if job requires Python skills
+            const requiresPython = job.skills.some(skill => skill.toLowerCase() === 'python');
+
+            if (requiresPython) {
+                // Redirect to test page with skill parameter
+                window.location.href = `take_test.html?skill=Python&job=${encodeURIComponent(JSON.stringify(job))}`;
+            } else {
+                // Apply directly if no Python skills required
+                directApply(job);
+            }
+        }
+
+        function directApply(job) {
+            showSuccessNotification(`✅ Your application for ${job.title} at ${job.company} has been submitted successfully!`);
+            updateUserStats('applied');
+        }
+
+        function updateUserStats(type) {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const userStats = JSON.parse(localStorage.getItem('userStats_' + currentUser.email) || '{"applied": 0, "tests": 0}');
+            
+            userStats[type]++;
+            localStorage.setItem('userStats_' + currentUser.email, JSON.stringify(userStats));
+            
+            // Update display
+            if (type === 'applied') {
+                document.getElementById('appliedJobs').textContent = userStats.applied;
+            } else if (type === 'tests') {
+                document.getElementById('testsCompleted').textContent = userStats.tests;
+            }
+        }
+
+        function updateProfile() {
+            showNotification('📄 Profile update feature coming soon!');
+        }
+
+        function viewApplications() {
+            showNotification('📋 Applications view coming soon!');
+        }
+
+        function logout() {
+            localStorage.removeItem('loggedInUserType');
+            localStorage.removeItem('currentUser');
+            showNotification('👋 Logged out successfully. Redirecting...');
+            setTimeout(() => {
+                window.location.href = 'demo.html';
+            }, 1500);
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 12px;
+                box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+                z-index: 10000;
+                font-weight: 500;
+                transform: translateX(400px);
+                transition: transform 0.3s ease;
+                font-size: 1rem;
+                max-width: 300px;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(400px)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 4000);
+        }
+
+        function showSuccessNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+                color: white;
+                padding: 1.5rem;
+                border-radius: 12px;
+                box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+                z-index: 10000;
+                font-weight: 500;
+                transform: translateX(400px);
+                transition: transform 0.3s ease;
+                font-size: 1rem;
+                max-width: 350px;
+                line-height: 1.4;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(400px)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 6000);
+        }
+    </script>
+</body>
+</html>
